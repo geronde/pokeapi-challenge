@@ -8,7 +8,7 @@ import Types from './containers/Types';
 function App() {
   return (
     <div>
-     <BrowserRouter>
+     <BrowserRouter basename="pokeapi-challenge">
      <Switch>
        <Route path="/"  component={HomePage} exact/>
        <Route path="/pokemon/:id"  component={Pokemon}/>
