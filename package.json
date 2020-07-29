@@ -2,7 +2,7 @@
   "name": "poke-challenge",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://geronde.github.io/pokeapi-challenge/",
+  "homepage": "https://geronde.github.io/pokeapi-challenge",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
