@@ -1,4 +1,4 @@
-This application was made for a challenge. You can view a working demo from (here)[https://geronde.github.io/pokeapi-challenge/]
+This application was made for a challenge. You can view a working demo from [here](https://geronde.github.io/pokeapi-challenge/)
 
 ## Stack
 
