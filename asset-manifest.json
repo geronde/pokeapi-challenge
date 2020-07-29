@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/pokeapi-challenge/static/js/main.4b1fff03.chunk.js",
-    "main.js.map": "/pokeapi-challenge/static/js/main.4b1fff03.chunk.js.map",
+    "main.js": "/pokeapi-challenge/static/js/main.3cd570df.chunk.js",
+    "main.js.map": "/pokeapi-challenge/static/js/main.3cd570df.chunk.js.map",
     "runtime-main.js": "/pokeapi-challenge/static/js/runtime-main.a8b34a8c.js",
     "runtime-main.js.map": "/pokeapi-challenge/static/js/runtime-main.a8b34a8c.js.map",
-    "static/js/2.3ece2305.chunk.js": "/pokeapi-challenge/static/js/2.3ece2305.chunk.js",
-    "static/js/2.3ece2305.chunk.js.map": "/pokeapi-challenge/static/js/2.3ece2305.chunk.js.map",
+    "static/js/2.d7492646.chunk.js": "/pokeapi-challenge/static/js/2.d7492646.chunk.js",
+    "static/js/2.d7492646.chunk.js.map": "/pokeapi-challenge/static/js/2.d7492646.chunk.js.map",
     "index.html": "/pokeapi-challenge/index.html",
-    "precache-manifest.0107990907d2b5919931dffaee2cf5cf.js": "/pokeapi-challenge/precache-manifest.0107990907d2b5919931dffaee2cf5cf.js",
+    "precache-manifest.8e16787b73e730aab486ed9fed6599ab.js": "/pokeapi-challenge/precache-manifest.8e16787b73e730aab486ed9fed6599ab.js",
     "service-worker.js": "/pokeapi-challenge/service-worker.js",
-    "static/js/2.3ece2305.chunk.js.LICENSE.txt": "/pokeapi-challenge/static/js/2.3ece2305.chunk.js.LICENSE.txt"
+    "static/js/2.d7492646.chunk.js.LICENSE.txt": "/pokeapi-challenge/static/js/2.d7492646.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a8b34a8c.js",
-    "static/js/2.3ece2305.chunk.js",
-    "static/js/main.4b1fff03.chunk.js"
+    "static/js/2.d7492646.chunk.js",
+    "static/js/main.3cd570df.chunk.js"
   ]
 }
