@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './containers/HomePage'
 import Pokemon from './containers/Pokemon';
 import Types from './containers/Types';
-import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
