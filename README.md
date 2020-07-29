@@ -9,6 +9,7 @@ react-loader-spinner: Loader for react
 
 ## Nice to have
 Since the challenge was timed, there have been many other tasks/work to accomplish more, such as:
+- Internalization
 - Unit testing
 - Code coverage
 - Linting
