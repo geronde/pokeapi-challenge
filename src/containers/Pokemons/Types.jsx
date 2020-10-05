@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { uniqueId, isEmpty } from "lodash";
 
-import AppLoader from "../components/Loader";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import AppLoader from "../../components/Loader";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
-import { LocaleContext } from './LocaleProvider/index'
+import { LocaleContext } from '../LocaleProvider/index'
 import messages from './messages';
 
 const Wrapper = styled.div`

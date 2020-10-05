@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { uniqueId, isEmpty, get } from "lodash";
 import { Link } from "react-router-dom";
 
-import AppLoader from "../components/Loader";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import AppLoader from "../../components/Loader";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import { getIdFromUrl } from "./utils";
 
-import { LocaleContext } from './LocaleProvider/index'
+import { LocaleContext } from '../LocaleProvider/index'
 import messages from './messages';
 
 

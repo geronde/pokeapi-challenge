@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { uniqueId, isEmpty } from "lodash";
 import { Link } from "react-router-dom";
 
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import AppLoader from "../components/Loader";
-import Pagination from "../components/Pagination";
-import { LocaleContext } from './LocaleProvider/index'
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import AppLoader from "../../components/Loader";
+import Pagination from "../../components/Pagination";
+import { LocaleContext } from '../LocaleProvider/index'
 
 import { paginate, getIdFromUrl } from "./utils";
 import messages from './messages';
