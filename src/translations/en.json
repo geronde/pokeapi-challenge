@@ -1,0 +1,9 @@
+{
+    "application_title": "Show all pokemons",
+    "home_page.select_placeholder":"select an option",
+    "home_page.search_no_result":"No result",
+    "pokemon_page.types":"Types",
+    "pokemon_page.abilities":"Abilities",
+    "pokemon_page.evolutions":"Evolutions",
+    "type_page.title": "Types"
+}

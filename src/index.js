@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import LocaleContextProvider from './containers/LocaleProvider'
 
 ReactDOM.render(
   <React.StrictMode>
+    <LocaleContextProvider>
     <App />
+  </LocaleContextProvider>,
   </React.StrictMode>,
   document.getElementById('root')
 );

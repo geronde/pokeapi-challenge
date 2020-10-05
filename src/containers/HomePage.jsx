@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { uniqueId, isEmpty } from "lodash";
+import { Link } from "react-router-dom";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AppLoader from "../components/Loader";
 import Pagination from "../components/Pagination";
-import { paginate, getIdFromUrl } from "./utils";
-import { Link } from "react-router-dom";
+import { LocaleContext } from './LocaleProvider/index'
 
+import { paginate, getIdFromUrl } from "./utils";
+import messages from './messages';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -96,7 +99,6 @@ const HomePage = () => {
       );
       const response = await res.json();
       const pokemons = response.pokemon.map((poke)=>poke.pokemon).slice(detail.startIndex, detail.endIndex)
-      console.log('pokemons: ', pokemons);
       setPokemons(pokemons) 
       setPagination({...pagination, totalPokemons: pokemons.length, next: null, previous: null})
   }
@@ -124,17 +126,20 @@ const HomePage = () => {
   }
 
 const { totalPokemons, pageSize, next, previous } = pagination;
-const detail = paginate(totalPokemons, currentPage, pageSize)
+const detail = paginate(totalPokemons, currentPage, pageSize);
+
+const {translate} = useContext(LocaleContext);
+
 
   if(isEmpty(pokemons) && !isFilter) return <AppLoader/>
 
   return (
     <Wrapper>
-      <Header>Pokemon</Header>
+      <Header>{translate(messages.appTitle)}</Header>
       <section>
       <article className="filter">
         <select onChange={filterByType}>
-        <option disabled selected value> -- select an option -- </option>
+  <option disabled selected value>{translate(messages.selectPlaceholder)}</option>
           {types.map((type)=><option value={type.url}>{type.name}</option> )}
         </select>
         </article>
@@ -145,7 +150,7 @@ const detail = paginate(totalPokemons, currentPage, pageSize)
             </div>
             </Link>
           ))}
-          {isEmpty(pokemons) && isFilter && <div>No results</div>}
+          {isEmpty(pokemons) && isFilter && <div>{translate(messages.noResult)}</div>}
         </article>
         {!isEmpty(pokemons) && <Pagination details={{...detail, next, previous}} nextPage={nextPage} previousPage={previousPage} />}
       </section>

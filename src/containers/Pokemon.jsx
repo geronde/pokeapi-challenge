@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { uniqueId, isEmpty, get } from "lodash";
+import { Link } from "react-router-dom";
+
 import AppLoader from "../components/Loader";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
 import { getIdFromUrl } from "./utils";
 
+import { LocaleContext } from './LocaleProvider/index'
+import messages from './messages';
 
 
 const Wrapper = styled.div`
@@ -109,6 +112,9 @@ const Pokemon = (props) => {
     return evoChain;
   };
 
+  const {translate} = useContext(LocaleContext);
+
+
   if (isEmpty(pokemon)) return <AppLoader/>
 
   return (
@@ -122,19 +128,19 @@ const Pokemon = (props) => {
           <article className="detail">
             <div className="name">{pokemon.name}</div>
             <ul className="type">
-              <div>Types</div>
+  <div>{translate(messages.types)}</div>
               {pokemon.types.map((type) => (
                 <Link to={`/types/${getIdFromUrl(type.type.url)}`}><li key={uniqueId(`${pokemon.name}`)}>{type.type.name}</li></Link>
               ))}
             </ul>
             <ul className="abilities">
-              <div>Abilities</div>
+              <div>{translate(messages.abilities)}</div>
               {pokemon.abilities.map((ab) => (
                 <li key={ab.slot}>{ab.ability.name}</li>
               ))}
             </ul>
             <ul className="evolution">
-              <div>Evolutions</div>
+              <div>{translate(messages.evolutions)}</div>
               {formatttedEvoltions().map((evo) => (
                 <li key={uniqueId()}>{evo.species_name}</li>
               ))}
