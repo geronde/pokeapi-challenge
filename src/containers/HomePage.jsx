@@ -135,11 +135,11 @@ const {translate} = useContext(LocaleContext);
 
   return (
     <Wrapper>
-      <Header>{translate(...messages.appTitle)}</Header>
+      <Header>{translate(messages.appTitle)}</Header>
       <section>
       <article className="filter">
         <select onChange={filterByType}>
-        <option disabled selected value> -- select an option -- </option>
+  <option disabled selected value>{translate(messages.selectPlaceholder)}</option>
           {types.map((type)=><option value={type.url}>{type.name}</option> )}
         </select>
         </article>
@@ -150,7 +150,7 @@ const {translate} = useContext(LocaleContext);
             </div>
             </Link>
           ))}
-          {isEmpty(pokemons) && isFilter && <div>No results</div>}
+          {isEmpty(pokemons) && isFilter && <div>{translate(messages.noResult)}</div>}
         </article>
         {!isEmpty(pokemons) && <Pagination details={{...detail, next, previous}} nextPage={nextPage} previousPage={previousPage} />}
       </section>

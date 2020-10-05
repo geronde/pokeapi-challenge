@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { uniqueId, isEmpty } from "lodash";
+
 import AppLoader from "../components/Loader";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
+import { LocaleContext } from './LocaleProvider/index'
+import messages from './messages';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -60,6 +64,9 @@ const Types = (props) => {
     );
   }, [props.match.params.type]);
 
+  const {translate} = useContext(LocaleContext);
+
+
   if (isEmpty(types))
     return (
       <AppLoader/>
@@ -67,7 +74,7 @@ const Types = (props) => {
 
   return (
     <Wrapper>
-      <Header>Types</Header>
+      <Header>{translate(messages.typePageTitle)}</Header>
       <main>
         <section className="types-container">
          {types.pokemon.map(type=>(
