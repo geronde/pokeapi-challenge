@@ -10,7 +10,7 @@ const localeReducer = (state, action) => {
     switch (action.type) {
         case CHANGE_LOCALE:
             return {
-                locale: action.payload,
+                locale: action.locale,
                 translate: getTranslate(action.locale),
             };
         default:
