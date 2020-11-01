@@ -3,14 +3,17 @@ import styled from "styled-components";
 import { uniqueId, isEmpty } from "lodash";
 import { Link } from "react-router-dom";
 
+
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AppLoader from "../../components/Loader";
 import Pagination from "../../components/Pagination";
 import { LocaleContext } from '../LocaleProvider/index'
 
+
 import { paginate, getIdFromUrl } from "./utils";
 import messages from './messages';
+
 
 const Wrapper = styled.div`
   width: 100%;
@@ -24,14 +27,21 @@ const Wrapper = styled.div`
     grid-area: content;
     display: flex;
     flex-direction: column;
-    width: 55%;
-    margin: 30px auto;
+    width: 75%;
+    margin: 0 auto;
     color: #000;
   }
   .pokemons-container {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
+    align-items:center;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .listing-container {
+    width: 95%;
+    margin: 0 auto;
   }
   .pokemon {
     padding: 10px;
@@ -60,14 +70,18 @@ const Wrapper = styled.div`
 `;
 
 
-const HomePage = () => {
+export const HomePage = () => {
   const [pokemons, setPokemons] = useState([]);
-
-  const [pagination, setPagination] = useState({totalPokemons: null, pageSize: 20});
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isFilter, setIsFilter] = useState(false)
   const [types, setTypes] = useState([]);
-  
+  const [currentPage, setCurrentPage] = useState(1)
+  const [paginationAPI, setPaginationAPI] = useState({ totalItems: 0, next: null, previous: null, pageSize: 20 });
+  const [pagination, setPagination] = useState({})
+  const [isFilter, setIsFilter] = useState(false);
+
+
+  const { translate } = useContext(LocaleContext);
+  const defaultSelectValue = translate(messages.selectPlaceholder)
+  const [selectedType, setSelectedType] = useState(defaultSelectValue)
 
   const fetchPokemons = async (url) => {
     const res = await fetch(
@@ -75,8 +89,15 @@ const HomePage = () => {
     );
     const response = await res.json();
     setPokemons(response.results);
-    setPagination({ totalPokemons: response.count, previous: response.previous,next: response.next})    
+    setPaginationAPI({ ...paginationAPI, totalItems: response.count, previous: response.previous, next: response.next })
   };
+
+
+  useEffect(() => {
+    setPagination(paginate(paginationAPI.totalItems, currentPage, paginationAPI.pageSize))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage, paginationAPI.totalItems])
+
 
   const fetchTypes = async (url) => {
     const res = await fetch(
@@ -86,75 +107,77 @@ const HomePage = () => {
     setTypes(response.results)
   };
 
+
   useEffect(() => {
     fetchPokemons('https://pokeapi.co/api/v2/pokemon');
     fetchTypes('https://pokeapi.co/api/v2/type')
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const filterByType = async (event) => {
-    setIsFilter(true)
-    const res = await fetch(
-        `${event.target.value}`
-      );
-      const response = await res.json();
-      const pokemons = response.pokemon.map((poke)=>poke.pokemon).slice(detail.startIndex, detail.endIndex)
-      setPokemons(pokemons) 
-      setPagination({...pagination, totalPokemons: pokemons.length, next: null, previous: null})
-  }
+
 
   const nextPage = () => {
-      const activePage = currentPage + 1;
-      setCurrentPage(activePage)
-      if(isFilter){
-        const list = pokemons.slice(detail.startIndex, detail.endIndex)
-        setPokemons(list)
-      }else {
-        fetchPokemons(pagination.next)
-      }   
+    const activePage = currentPage + 1;
+    setCurrentPage(activePage)
+    noFilterFetch(paginationAPI.next)
   }
 
   const previousPage = () => {
     const activePage = currentPage - 1;
     setCurrentPage(activePage)
-    if(isFilter){
-      const list = pokemons.slice(detail.startIndex, detail.endIndex)
-      setPokemons(list)
-    }else {
-      fetchPokemons(pagination.previous)
+    noFilterFetch(paginationAPI.previous)
+  }
+
+  const noFilterFetch = (url) => {
+    if (!isFilter) {
+      fetchPokemons(url)
     }
   }
 
-const { totalPokemons, pageSize, next, previous } = pagination;
-const detail = paginate(totalPokemons, currentPage, pageSize);
+  const filterByType = async (event) => {
+    const selectedOption = event.target[event.target.selectedIndex]
+    setSelectedType(selectedOption.value)
+    setIsFilter(true);
 
-const {translate} = useContext(LocaleContext);
+    const res = await fetch(selectedOption.value);
+    const response = await res.json();
+    const pokemons = response.pokemon.map((poke) => poke.pokemon)
+    setPokemons(pokemons)
+    setCurrentPage(1)
+    setPaginationAPI({ ...paginationAPI, totalItems: response.pokemon.length })
+  }
 
+  const formatPokemonsByFilter = () => {
+    if(!isFilter) return pokemons
 
-  if(isEmpty(pokemons) && !isFilter) return <AppLoader/>
+    return pokemons.slice(pagination.startIndex, pagination.endIndex)
+  }
 
+  if (isEmpty(pokemons) && !isFilter) return <AppLoader />
   return (
     <Wrapper>
       <Header>{translate(messages.appTitle)}</Header>
       <section>
-      <article className="filter">
-        <select onChange={filterByType}>
-  <option disabled selected value>{translate(messages.selectPlaceholder)}</option>
-          {types.map((type)=><option value={type.url}>{type.name}</option> )}
-        </select>
+        <article className="filter">
+          <select value={selectedType} onChange={filterByType}>
+            <option disabled>{defaultSelectValue}</option>
+            {types.map((type) => <option name={type.name} key={uniqueId(`${type.name}`)} value={type.url}>{type.name}</option>)}
+          </select>
         </article>
-        <article className="pokemons-container">
-          {pokemons?.map((pokemon, index) => (
-            <Link to={`/pokemon/${getIdFromUrl(pokemon.url)}`}><div className="pokemon" key={uniqueId()}>
-              {pokemon.name}
-            </div>
-            </Link>
-          ))}
+        <article className="listing-container">
+          <div className="pokemons-container">
+            {formatPokemonsByFilter().map((pokemon) => (
+              <Link to={`/pokemon/${getIdFromUrl(pokemon.url)}`} key={uniqueId()}><div className="pokemon">
+                {pokemon.name}
+              </div>
+              </Link>
+            ))}
+          </div>
           {isEmpty(pokemons) && isFilter && <div>{translate(messages.noResult)}</div>}
         </article>
-        {!isEmpty(pokemons) && <Pagination details={{...detail, next, previous}} nextPage={nextPage} previousPage={previousPage} />}
+        {!isEmpty(pokemons) && <Pagination details={{ ...paginationAPI, currentPage, isFilter, startIndex: pagination.startIndex, endIndex: pagination.endIndex }} nextPage={nextPage} previousPage={previousPage} />}
       </section>
-      <Footer/>
+      <Footer />
     </Wrapper>
   );
 };

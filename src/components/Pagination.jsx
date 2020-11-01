@@ -1,5 +1,4 @@
 import React from "react";
-import { isNull } from "lodash";
 import styled from "styled-components";
 
 const PaginateWrapper = styled.article`
@@ -21,18 +20,32 @@ const PaginateWrapper = styled.article`
 `;
 
 const Pagination = (props) => {
-const { next, previous, totalItems, currentPage, pageSize  } = props.details
+const { next, previous, totalItems, currentPage, pageSize , isFilter, startIndex, endIndex  } = props.details
+const isNext = () => {
+  if(isFilter){
+    return endIndex + 1 < totalItems
+  }
+  return !!next
+}
+const isPrevious = () => {
+  if(isFilter){
+    return startIndex !== 0
+  }
+  return !!previous
+}
+
   return (
     <PaginateWrapper>
       <div
         onClick={props.previousPage}
-        className={!isNull(previous) ? "paginate" : "disabled"}
+        className={isPrevious()? "paginate" : "disabled"}
+        role="button"
       >
         <svg
           height="64"
           viewBox="0 0 24 24"
           width="64"
-          fill={!isNull(previous) ? "#000" : "#d3d3d3"}
+          fill={isPrevious()? "#000" : "#d3d3d3"}
           xmlns="http://www.w3.org/2000/svg"
         >
           <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
@@ -45,11 +58,12 @@ const { next, previous, totalItems, currentPage, pageSize  } = props.details
       </div>
       <div
         onClick={props.nextPage}
-        className={!isNull(next) ? "paginate" : "disabled"}
+        role="button"
+        className={isNext()? "paginate" : "disabled"}
       >
         <svg
           height="64"
-          fill={!isNull(next) ? "#000" : "#d3d3d3"}
+          fill={isNext()? "#000" : "#d3d3d3"}
           viewBox="0 0 24 24"
           width="64"
           xmlns="http://www.w3.org/2000/svg"
