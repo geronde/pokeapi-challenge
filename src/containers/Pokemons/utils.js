@@ -1,11 +1,11 @@
 export const paginate = (
     totalItems,
-    currentPage= 1,
+    currentPage = 1,
     pageSize = 20,
 ) => {
-    
-    let totalPages = Math.ceil(totalItems / pageSize);
 
+    let totalPages = Math.ceil(totalItems / pageSize)
+    
     if (currentPage < 1) {
         currentPage = 1;
     } else if (currentPage > totalPages) {
@@ -13,24 +13,21 @@ export const paginate = (
     }
 
     let startPage, endPage;
-        startPage = 1;
-        endPage = totalPages;
+    startPage = 1;
+    endPage = totalPages;
 
     let startIndex = (currentPage - 1) * pageSize;
     let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
-    let pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
-
     return {
-        totalItems: totalItems,
-        currentPage: currentPage,
-        pageSize: pageSize,
+        totalItems,
+        currentPage,
+        pageSize,
         totalOfPages: totalPages,
-        startPage: startPage,
-        endPage: endPage,
-        startIndex: startIndex,
-        endIndex: endIndex,
-        pages: pages
+        startPage,
+        endPage,
+        startIndex,
+        endIndex,
     };
 }
 
