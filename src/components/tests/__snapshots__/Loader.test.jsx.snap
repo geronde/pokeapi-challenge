@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader should display Loader correctly 1`] = `
+<DocumentFragment>
+  .c0 {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+<div
+    class="c0"
+  >
+    <div
+      aria-busy="true"
+      class=""
+    >
+      <svg
+        aria-label="audio-loading"
+        height="100"
+        stroke="#0E1111"
+        viewBox="0 0 44 44"
+        width="100"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g
+          fill="none"
+          fill-rule="evenodd"
+          stroke-width="2"
+        >
+          <circle
+            cx="22"
+            cy="22"
+            r="1"
+          >
+            <animate
+              attributeName="r"
+              begin="0s"
+              calcMode="spline"
+              dur="1.8s"
+              keySplines="0.165, 0.84, 0.44, 1"
+              keyTimes="0; 1"
+              repeatCount="indefinite"
+              values="1; 20"
+            />
+            <animate
+              attributeName="strokeOpacity"
+              begin="0s"
+              calcMode="spline"
+              dur="1.8s"
+              keySplines="0.3, 0.61, 0.355, 1"
+              keyTimes="0; 1"
+              repeatCount="indefinite"
+              values="1; 0"
+            />
+          </circle>
+          <circle
+            cx="22"
+            cy="22"
+            r="1"
+          >
+            <animate
+              attributeName="r"
+              begin="-0.9s"
+              calcMode="spline"
+              dur="1.8s"
+              keySplines="0.165, 0.84, 0.44, 1"
+              keyTimes="0; 1"
+              repeatCount="indefinite"
+              values="1; 20"
+            />
+            <animate
+              attributeName="strokeOpacity"
+              begin="-0.9s"
+              calcMode="spline"
+              dur="1.8s"
+              keySplines="0.3, 0.61, 0.355, 1"
+              keyTimes="0; 1"
+              repeatCount="indefinite"
+              values="1; 0"
+            />
+          </circle>
+        </g>
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
