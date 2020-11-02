@@ -167,7 +167,7 @@ export const HomePage = () => {
         <article className="listing-container">
           <div className="pokemons-container">
             {formatPokemonsByFilter().map((pokemon) => (
-              <Link to={`/pokemon/${getIdFromUrl(pokemon.url)}`} key={uniqueId()}><div className="pokemon">
+              <Link to={`/pokemon/${getIdFromUrl(pokemon.url)}`} key={uniqueId()}><div data-testid="single-pokemon" className="pokemon">
                 {pokemon.name}
               </div>
               </Link>
