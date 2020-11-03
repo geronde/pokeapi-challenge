@@ -1,9 +1,10 @@
+/* istanbul ignore file */
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import HomePage from './containers/HomePage'
-import Pokemon from './containers/Pokemon';
-import Types from './containers/Types';
+import HomePage from './containers/Pokemons/HomePage'
+import Pokemon from './containers/Pokemons/Pokemon';
+import Types from './containers/Pokemons/Types';
 
 function App() {
   return (

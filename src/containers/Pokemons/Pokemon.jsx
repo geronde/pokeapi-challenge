@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import { uniqueId, isEmpty, get } from "lodash";
+import { uniqueId, isEmpty} from "lodash";
 import { Link } from "react-router-dom";
 
-import AppLoader from "../components/Loader";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import { getIdFromUrl } from "./utils";
+import AppLoader from "../../components/Loader";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import { getIdFromUrl, formatEvolutions } from "./utils";
 
-import { LocaleContext } from './LocaleProvider/index'
+import { LocaleContext } from '../LocaleProvider/index'
 import messages from './messages';
 
 
@@ -87,35 +87,11 @@ const Pokemon = (props) => {
     );
   }, [props.match.params.id]);
 
-  const formatttedEvoltions = () => {
-    let evoChain = [];
-    let evoData = pokemon.chain;
 
-    do {
-      let numberOfEvolutions = evoData.evolves_to.length;
-
-      evoChain.push({
-        species_name: get(evoData, "species.name"),
-      });
-
-      if (numberOfEvolutions > 1) {
-        for (let i = 1; i < numberOfEvolutions; i++) {
-          evoChain.push({
-            species_name: get(evoData.evolves_to[i], "species.name"),
-          });
-        }
-      }
-
-      evoData = evoData.evolves_to[0];
-    } while (evoData !== undefined && evoData.hasOwnProperty("evolves_to"));
-
-    return evoChain;
-  };
-
-  const {translate} = useContext(LocaleContext);
+  const { translate } = useContext(LocaleContext);
 
 
-  if (isEmpty(pokemon)) return <AppLoader/>
+  if (isEmpty(pokemon)) return <AppLoader />
 
   return (
     <Wrapper>
@@ -128,9 +104,9 @@ const Pokemon = (props) => {
           <article className="detail">
             <div className="name">{pokemon.name}</div>
             <ul className="type">
-  <div>{translate(messages.types)}</div>
+              <div>{translate(messages.types)}</div>
               {pokemon.types.map((type) => (
-                <Link to={`/types/${getIdFromUrl(type.type.url)}`}><li key={uniqueId(`${pokemon.name}`)}>{type.type.name}</li></Link>
+                <Link key={uniqueId(`${pokemon.name}`)} to={`/types/${getIdFromUrl(type.type.url)}`}><li >{type.type.name}</li></Link>
               ))}
             </ul>
             <ul className="abilities">
@@ -141,14 +117,14 @@ const Pokemon = (props) => {
             </ul>
             <ul className="evolution">
               <div>{translate(messages.evolutions)}</div>
-              {formatttedEvoltions().map((evo) => (
+              {formatEvolutions(pokemon).map((evo) => (
                 <li key={uniqueId()}>{evo.species_name}</li>
               ))}
             </ul>
           </article>
         </section>
       </main>
-      <Footer/>
+      <Footer />
     </Wrapper>
   );
 };

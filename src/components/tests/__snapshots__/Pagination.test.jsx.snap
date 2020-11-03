@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination should display pagination correctly 1`] = `
+<DocumentFragment>
+  .c0 {
+  width: 100%;
+  padding: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0 .paginate {
+  cursor: pointer;
+}
+
+.c0 .disabled {
+  cursor: not-allowed;
+}
+
+.c0 .pagination-counter {
+  font-size: 18px;
+}
+
+<article
+    class="c0"
+  >
+    <div
+      class="disabled"
+      role="button"
+    >
+      <svg
+        fill="#d3d3d3"
+        height="64"
+        viewBox="0 0 24 24"
+        width="64"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"
+        />
+        <path
+          d="M0-.5h24v24H0z"
+          fill="none"
+        />
+      </svg>
+    </div>
+    <div
+      class="pagination-counter"
+    >
+      1 of 13
+    </div>
+    <div
+      class="paginate"
+      role="button"
+    >
+      <svg
+        fill="#000"
+        height="64"
+        viewBox="0 0 24 24"
+        width="64"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"
+        />
+        <path
+          d="M0-.25h24v24H0z"
+          fill="none"
+        />
+      </svg>
+    </div>
+  </article>
+</DocumentFragment>
+`;
