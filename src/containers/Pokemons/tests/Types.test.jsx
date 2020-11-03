@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, fireEvent, waitFor, screen, cleanup } from '@testing-library/react'
+import { act, screen, cleanup } from '@testing-library/react'
 
 import { render } from '../../../test-helper';
 import { generateTestPokemons } from '../../../test-helper/bootstraper';

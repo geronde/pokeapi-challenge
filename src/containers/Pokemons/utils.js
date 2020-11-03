@@ -1,3 +1,4 @@
+import {get} from 'lodash'
 export const paginate = (
     totalItems,
     currentPage = 1,
@@ -32,3 +33,28 @@ export const paginate = (
 }
 
 export const getIdFromUrl = (url) => url.split("/").slice(-2)[0]
+
+export const formatEvolutions = (pokemon) => {
+    let evoChain = [];
+    let evoData = pokemon.chain;
+
+    do {
+      let numberOfEvolutions = evoData.evolves_to.length;
+
+      evoChain.push({
+        species_name: get(evoData, "species.name"),
+      });
+
+      if (numberOfEvolutions > 1) {
+        for (let i = 1; i < numberOfEvolutions; i++) {
+          evoChain.push({
+            species_name: get(evoData.evolves_to[i], "species.name"),
+          });
+        }
+      }
+
+      evoData = evoData.evolves_to[0];
+    } while (evoData !== undefined && evoData.hasOwnProperty("evolves_to"));
+
+    return evoChain;
+  };

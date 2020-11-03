@@ -1,4 +1,4 @@
-import { getIdFromUrl, paginate } from '../utils';
+import { formatEvolutions, getIdFromUrl, paginate } from '../utils';
 
 describe('getIdFromUrl', () => {
     it('should split by / and return second last index', () => {
@@ -54,4 +54,63 @@ describe('paginate', () => {
             "totalOfPages": 6,
         })
     });
+});
+
+describe('formatEvolutions', () => {
+    const pokemon = {
+        "baby_trigger_item": null,
+        "chain": {
+            "evolution_details": [],
+            "evolves_to": [
+                {
+                    "evolves_to": [
+                        {
+
+                            "evolves_to": [],
+                            "species": {
+                                "name": "venusaur",
+                                "url": "https://pokeapi.co/api/v2/pokemon-species/3/"
+                            }
+                        }
+                    ],
+                    "species": {
+                        "name": "ivysaur",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/2/"
+                    }
+                },
+                {
+                    "evolves_to": [
+                        {
+                            "evolves_to": [],
+                            "species": {
+                                "name": "venusaur",
+                                "url": "https://pokeapi.co/api/v2/pokemon-species/3/"
+                            }
+                        }
+                    ],
+                    "species": {
+                        "name": "saur",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/2/"
+                    }
+                }
+            ],
+            "species": {
+                "name": "bulbasaur",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/1/"
+            }
+        },
+        "id": 1
+    }
+    expect(formatEvolutions(pokemon)).toEqual([{
+        "species_name": "bulbasaur",
+    },
+    {
+        "species_name": "saur",
+    },
+    {
+        "species_name": "ivysaur",
+    },
+    {
+        "species_name": "venusaur",
+    },])
 });
