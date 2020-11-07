@@ -8,8 +8,6 @@ jobs:
       - image: circleci/node:12
     steps:
       - checkout
-      - restore_cache:
-          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
           command: yarn install
@@ -18,10 +16,6 @@ jobs:
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
-      - save_cache:
-          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
-          paths:
-            - /home/circleci/.yarn
       - run:
           name: Run tests and upload coverage reports to Code Climate
           command: |
