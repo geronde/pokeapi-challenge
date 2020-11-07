@@ -1,3 +1,7 @@
+[![CircleCI](https://circleci.com/gh/circleci/pokeapi-challenge.svg?style=svg)](https://circleci.com/gh/circleci/pokeapi-challenge)
+
+<a href="https://codeclimate.com/github/geronde/pokeapi-challenge/maintainability"><img src="https://api.codeclimate.com/v1/badges/b61877a4253ba9423c5d/maintainability" /></a>
+
 This application was made for a challenge. You can view a working demo from [here](https://geronde.github.io/pokeapi-challenge/)
 
 ## Stack
