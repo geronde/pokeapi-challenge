@@ -13,8 +13,10 @@ I chose to work in react as per the requirment for the challenge. And as per the
 
 ## Nice to have
 Since the challenge was timed, there have been many other tasks/work to accomplish more, such as:
-- Internalization
-- Unit testing
-- Code coverage
-- Linting
-- Continuous integration
+- ~~Internalization~~
+- ~~Unit testing~~
+- ~~Code coverage~~
+- ~~Linting~~
+- ~~Continuous integration~~
+- Implement new design
+- Use graphql to query pokeapi (next level)
