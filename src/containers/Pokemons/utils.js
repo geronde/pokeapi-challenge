@@ -6,17 +6,16 @@ export const paginate = (
   pageSize = 20,
 ) => {
   const totalPages = Math.ceil(totalItems / pageSize);
+  let cp = currentPage;
 
   if (currentPage < 1) {
-    currentPage = 1;
+    cp = 1;
   } else if (currentPage > totalPages) {
-    currentPage = totalPages;
+    cp = totalPages;
   }
 
-  let startPage;
-  let endPage;
-  startPage = 1;
-  endPage = totalPages;
+  const startPage = 1;
+  const endPage = totalPages;
 
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = Math.min(
@@ -26,7 +25,7 @@ export const paginate = (
 
   return {
     totalItems,
-    currentPage,
+    currentPage: cp,
     pageSize,
     totalOfPages: totalPages,
     startPage,
@@ -50,18 +49,18 @@ export const formatEvolutions = (pokemon) => {
     });
 
     if (numberOfEvolutions > 1) {
-      for (let i = 1; i < numberOfEvolutions; i++) {
+      for (let index = 1; index < numberOfEvolutions; index += 1) {
         evoChain.push({
-          species_name: get(evoData.evolves_to[i], 'species.name'),
+          species_name: get(
+            evoData.evolves_to[Number.parseInt(index, 10)],
+            'species.name',
+          ),
         });
       }
     }
 
-    evoData = evoData.evolves_to[0];
-  } while (
-    evoData !== undefined &&
-    evoData.hasOwnProperty('evolves_to')
-  );
+    evoData = { ...evoData.evolves_to[0] };
+  } while (evoData !== undefined && 'evolves_to' in evoData);
 
   return evoChain;
 };

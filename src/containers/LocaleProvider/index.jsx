@@ -1,12 +1,12 @@
-import React, {createContext, useReducer} from 'react';
-import localeReducer, {initialState} from './reducer';
+import React, { createContext, useReducer } from 'react';
+import localeReducer, { initialState } from './reducer';
 
 export const LocaleContext = createContext(initialState);
 
 export const LocaleContextProvider = ({ children }) => {
-    //dispatch reducer
+  // dispatch reducer
   const [state, dispatch] = useReducer(localeReducer, initialState);
-  
+
   return (
     <LocaleContext.Provider value={{ ...state, dispatch }}>
       {children}
@@ -14,4 +14,4 @@ export const LocaleContextProvider = ({ children }) => {
   );
 };
 
-export default LocaleContextProvider
+export default LocaleContextProvider;

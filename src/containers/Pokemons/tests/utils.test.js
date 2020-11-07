@@ -58,7 +58,6 @@ describe('paginate', () => {
 
 describe('formatEvolutions', () => {
   const pokemon = {
-    baby_trigger_item: null,
     chain: {
       evolution_details: [],
       evolves_to: [

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import LocaleContextProvider from '..';
+import LocaleContextProvider from '../index';
 
 describe('LocalProvider', () => {
   let props;

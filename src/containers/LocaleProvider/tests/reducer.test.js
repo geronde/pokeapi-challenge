@@ -1,4 +1,4 @@
-import { CHANGE_LOCALE } from '../constants';
+import { CHANGE_LOCALE, RESET_LOCALE } from '../constants';
 import localeReducer from '../reducer';
 import * as helpers from '../helper';
 
@@ -18,9 +18,17 @@ describe('localeReducer', () => {
     });
     expect(helpers.getTranslate).toHaveBeenCalledWith('fr');
   });
-  it('should return with correct intial state when action type is default', () => {
+  it('should return intial state when action type is default', () => {
     expect(
       localeReducer('locale', { type: 'other', locale: 'pl' }),
+    ).toEqual({
+      locale: 'en',
+      translate: expect.any(Function),
+    });
+  });
+  it('should return intial state when action type RESET_LOCALE', () => {
+    expect(
+      localeReducer('locale', { type: RESET_LOCALE, locale: 'pl' }),
     ).toEqual({
       locale: 'en',
       translate: expect.any(Function),

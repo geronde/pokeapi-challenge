@@ -1,4 +1,8 @@
-import { CHANGE_LOCALE, DEFAULT_LOCALE } from './constants';
+import {
+  CHANGE_LOCALE,
+  RESET_LOCALE,
+  DEFAULT_LOCALE,
+} from './constants';
 import { getTranslate } from './helper';
 
 export const initialState = {
@@ -13,6 +17,8 @@ const localeReducer = (state, action) => {
         locale: action.locale,
         translate: getTranslate(action.locale),
       };
+    case RESET_LOCALE:
+      return { ...initialState };
     default:
       return { ...initialState };
   }

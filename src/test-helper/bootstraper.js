@@ -3,8 +3,11 @@ import faker from 'faker';
 export const generateTestPokemons = (n = 15, isType) => {
   const pokemons = [];
 
-  for (let i = 0; i < n; i++) {
-    let poke = { name: faker.random.word(), url: `fake-url/${i}/` };
+  for (let index = 0; index < n; index += 1) {
+    let poke = {
+      name: faker.random.word(),
+      url: `fake-url/${index}/`,
+    };
     if (isType) {
       poke = { pokemon: { ...poke } };
     }
@@ -12,3 +15,5 @@ export const generateTestPokemons = (n = 15, isType) => {
   }
   return pokemons;
 };
+
+export default { generateTestPokemons };

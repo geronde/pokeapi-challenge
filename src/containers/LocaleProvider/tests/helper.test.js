@@ -1,7 +1,5 @@
 import * as translations from '../../../translations';
-import translation from '../../../translations';
-
-const { getTranslate } = require('../helper');
+import { getTranslate } from '../helper';
 
 describe('getTranslate', () => {
   it('should retun the correct translation by locale and key and return key no translation was available', () => {
