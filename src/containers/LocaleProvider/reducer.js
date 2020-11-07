@@ -1,21 +1,27 @@
-import {CHANGE_LOCALE, DEFAULT_LOCALE} from './constants';
-import {getTranslate} from './helper'
+import {
+  CHANGE_LOCALE,
+  RESET_LOCALE,
+  DEFAULT_LOCALE,
+} from './constants';
+import { getTranslate } from './helper';
 
 export const initialState = {
-    locale: DEFAULT_LOCALE,
-    translate: getTranslate(DEFAULT_LOCALE),
+  locale: DEFAULT_LOCALE,
+  translate: getTranslate(DEFAULT_LOCALE),
 };
 
 const localeReducer = (state, action) => {
-    switch (action.type) {
-        case CHANGE_LOCALE:
-            return {
-                locale: action.locale,
-                translate: getTranslate(action.locale),
-            };
-        default:
-            return { ...initialState };
-    }
+  switch (action.type) {
+    case CHANGE_LOCALE:
+      return {
+        locale: action.locale,
+        translate: getTranslate(action.locale),
+      };
+    case RESET_LOCALE:
+      return { ...initialState };
+    default:
+      return { ...initialState };
+  }
 };
 
-export default localeReducer
+export default localeReducer;

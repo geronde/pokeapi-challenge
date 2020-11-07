@@ -1,14 +1,19 @@
 import faker from 'faker';
 
 export const generateTestPokemons = (n = 15, isType) => {
-    const pokemons = [];
+  const pokemons = [];
 
-    for(let i = 0; i < n; i++) {
-        let poke = { name: faker.random.word(), url: `fake-url/${i}/` }
-        if(isType){
-            poke = {pokemon: {...poke}}
-        }
-        pokemons.push(poke)
+  for (let index = 0; index < n; index += 1) {
+    let poke = {
+      name: faker.random.word(),
+      url: `fake-url/${index}/`,
+    };
+    if (isType) {
+      poke = { pokemon: { ...poke } };
     }
-    return pokemons
-}
+    pokemons.push(poke);
+  }
+  return pokemons;
+};
+
+export default { generateTestPokemons };

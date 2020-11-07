@@ -1,60 +1,66 @@
-import {get} from 'lodash'
+import { get } from 'lodash';
+
 export const paginate = (
-    totalItems,
-    currentPage = 1,
-    pageSize = 20,
+  totalItems,
+  currentPage = 1,
+  pageSize = 20,
 ) => {
+  const totalPages = Math.ceil(totalItems / pageSize);
+  let cp = currentPage;
 
-    let totalPages = Math.ceil(totalItems / pageSize)
-    
-    if (currentPage < 1) {
-        currentPage = 1;
-    } else if (currentPage > totalPages) {
-        currentPage = totalPages;
-    }
+  if (currentPage < 1) {
+    cp = 1;
+  } else if (currentPage > totalPages) {
+    cp = totalPages;
+  }
 
-    let startPage, endPage;
-    startPage = 1;
-    endPage = totalPages;
+  const startPage = 1;
+  const endPage = totalPages;
 
-    let startIndex = (currentPage - 1) * pageSize;
-    let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = Math.min(
+    startIndex + pageSize - 1,
+    totalItems - 1,
+  );
 
-    return {
-        totalItems,
-        currentPage,
-        pageSize,
-        totalOfPages: totalPages,
-        startPage,
-        endPage,
-        startIndex,
-        endIndex,
-    };
-}
+  return {
+    totalItems,
+    currentPage: cp,
+    pageSize,
+    totalOfPages: totalPages,
+    startPage,
+    endPage,
+    startIndex,
+    endIndex,
+  };
+};
 
-export const getIdFromUrl = (url) => url.split("/").slice(-2)[0]
+export const getIdFromUrl = (url) => url.split('/').slice(-2)[0];
 
 export const formatEvolutions = (pokemon) => {
-    let evoChain = [];
-    let evoData = pokemon.chain;
+  const evoChain = [];
+  let evoData = pokemon.chain;
 
-    do {
-      let numberOfEvolutions = evoData.evolves_to.length;
+  do {
+    const numberOfEvolutions = evoData.evolves_to.length;
 
-      evoChain.push({
-        species_name: get(evoData, "species.name"),
-      });
+    evoChain.push({
+      species_name: get(evoData, 'species.name'),
+    });
 
-      if (numberOfEvolutions > 1) {
-        for (let i = 1; i < numberOfEvolutions; i++) {
-          evoChain.push({
-            species_name: get(evoData.evolves_to[i], "species.name"),
-          });
-        }
+    if (numberOfEvolutions > 1) {
+      for (let index = 1; index < numberOfEvolutions; index += 1) {
+        evoChain.push({
+          species_name: get(
+            evoData.evolves_to[Number.parseInt(index, 10)],
+            'species.name',
+          ),
+        });
       }
+    }
 
-      evoData = evoData.evolves_to[0];
-    } while (evoData !== undefined && evoData.hasOwnProperty("evolves_to"));
+    evoData = { ...evoData.evolves_to[0] };
+  } while (evoData !== undefined && 'evolves_to' in evoData);
 
-    return evoChain;
-  };
+  return evoChain;
+};
