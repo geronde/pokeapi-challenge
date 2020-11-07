@@ -1,6 +1,7 @@
-[![CircleCI](https://circleci.com/gh/circleci/pokeapi-challenge.svg?style=svg)](https://circleci.com/gh/circleci/pokeapi-challenge)
+[![Build](https://img.shields.io/circleci/build/github/geronde/pokeapi-challenge/master)]
 
 <a href="https://codeclimate.com/github/geronde/pokeapi-challenge/maintainability"><img src="https://api.codeclimate.com/v1/badges/b61877a4253ba9423c5d/maintainability" /></a>
+<a href="https://codeclimate.com/github/geronde/pokeapi-challenge/test_coverage"><img src="https://api.codeclimate.com/v1/badges/b61877a4253ba9423c5d/test_coverage" /></a>
 
 This application was made for a challenge. You can view a working demo from [here](https://geronde.github.io/pokeapi-challenge/)
 
