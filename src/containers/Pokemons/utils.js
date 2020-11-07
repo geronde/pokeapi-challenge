@@ -6,7 +6,7 @@ export const paginate = (
   pageSize = 20,
 ) => {
   const totalPages = Math.ceil(totalItems / pageSize);
-  let cp = currentPage;
+  let cp = 1;
 
   if (currentPage < 1) {
     cp = 1;
@@ -17,7 +17,7 @@ export const paginate = (
   const startPage = 1;
   const endPage = totalPages;
 
-  const startIndex = (currentPage - 1) * pageSize;
+  const startIndex = (cp - 1) * pageSize;
   const endIndex = Math.min(
     startIndex + pageSize - 1,
     totalItems - 1,
